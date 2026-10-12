@@ -5,6 +5,12 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
+/**
+ * Page Object для страницы Radio Button
+ *
+ * <p>Содержит радиокнопки Yes, Impressive и No
+ * и методы для получения этих элементов.</p>
+ */
 public class RadioButtonPage {
 
     private static final SelenideElement radioButtonYes = $x("//input[@id='yesRadio']");

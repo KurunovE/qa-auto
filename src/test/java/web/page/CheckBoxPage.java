@@ -9,6 +9,12 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
+/**
+ * Page Object для страницы Check Box
+ *
+ * <p>Содержит элементы дерева, методы для выбора чекбоксов,
+ * раскрытия и сворачивания узлов и проверки результатов выбора.</p>
+ */
 public class CheckBoxPage {
 
     private static final String TREE_WRAPPER_SELECTOR = ".check-box-tree-wrapper .rc-tree";
@@ -42,10 +48,20 @@ public class CheckBoxPage {
         return node(name).$(CHECKBOX_SELECTOR);
     }
 
+    /**
+     * Переключает состояние чекбокса указанного узла.
+     *
+     * @param name название узла дерева
+     */
     public void selectCheckbox(String name) {
         checkbox(name).click();
     }
 
+    /**
+     * Раскрывает указанный узел дерева, если он свернут.
+     *
+     * @param name название узла дерева
+     */
     public void expandNode(String name) {
         SelenideElement branch = node(name).shouldBe(visible);
         if (!branch.has(attribute(ARIA_EXPANDED, TRUE_VALUE))) {
@@ -68,22 +84,51 @@ public class CheckBoxPage {
         }
     }
 
+    /**
+     * Проверяет, выбран ли чекбокс указанного узла полностью.
+     *
+     * @param name название узла дерева
+     * @return true, если чекбокс выбран полностью
+     */
     public boolean isCheckboxSelected(String name) {
         return checkbox(name).has(attribute(ARIA_CHECKED, TRUE_VALUE));
     }
 
+    /**
+     * Проверяет, находится ли чекбокс указанного узла в состоянии частичного выбора.
+     *
+     * @param name название узла дерева
+     * @return true, если чекбокс выбран частично
+     */
     public boolean isCheckboxPartiallySelected(String name) {
         return checkbox(name).has(attribute(ARIA_CHECKED, MIXED_VALUE));
     }
 
+    /**
+     * Проверяет видимость указанного узла дерева.
+     *
+     * @param name название узла дерева
+     * @return true, если узел видим пользователю
+     */
     public boolean isNodeVisible(String name) {
         return node(name).isDisplayed();
     }
 
+    /**
+     * Проверяет видимость блока с результатами выбора чекбоксов.
+     *
+     * @return true, если блок результатов видим пользователю
+     */
     public boolean isResultDisplayed() {
         return result.isDisplayed();
     }
 
+    /**
+     * Проверяет наличие указанного элемента в результатах выбора.
+     *
+     * @param name название элемента в блоке результатов
+     * @return true, если элемент присутствует в результатах
+     */
     public boolean isItemInResult(String name) {
         return result.$$(RESULT_ITEM_SELECTOR)
                 .findBy(exactText(name))
