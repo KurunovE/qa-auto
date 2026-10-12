@@ -1,11 +1,14 @@
 package web.test;
 
+import annotation.PageLoadStrategy;
 import core.BaseSelenideTest;
+import enumirate.LoadStrategy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import web.page.TextBoxPage;
 
+@PageLoadStrategy(LoadStrategy.EAGER)
 public class TextBoxTest extends BaseSelenideTest {
 
     private static final String TEXT_BOX_URL = "https://demoqa.com/text-box";
