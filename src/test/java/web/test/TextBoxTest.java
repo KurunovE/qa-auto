@@ -11,7 +11,7 @@ import web.page.TextBoxPage;
 @PageLoadStrategy(LoadStrategy.EAGER)
 public class TextBoxTest extends BaseSelenideTest {
 
-    private static final String TEXT_BOX_URL = "https://demoqa.com/text-box";
+    private static final String TEXT_BOX_PAGE_URL = "https://demoqa.com/text-box";
 
     @Test
     @DisplayName("Отправка формы с валидными данными")
@@ -21,7 +21,7 @@ public class TextBoxTest extends BaseSelenideTest {
         String currentAddress = "Amsterdam";
         String permanentAddress = "Saint Petersburg";
 
-        TextBoxPage textBoxPage = new TextBoxPage(TEXT_BOX_URL);
+        TextBoxPage textBoxPage = new TextBoxPage(TEXT_BOX_PAGE_URL);
 
         textBoxPage.setFullName(name);
         textBoxPage.setEmail(email);
@@ -40,7 +40,7 @@ public class TextBoxTest extends BaseSelenideTest {
     public void submitFormWithOnlyName() {
         String name = "Egor Kurunov";
 
-        TextBoxPage textBoxPage = new TextBoxPage(TEXT_BOX_URL);
+        TextBoxPage textBoxPage = new TextBoxPage(TEXT_BOX_PAGE_URL);
 
         textBoxPage.setFullName(name);
         textBoxPage.submit();
@@ -53,7 +53,7 @@ public class TextBoxTest extends BaseSelenideTest {
     public void rejectFormWithInvalidEmail() {
         String email = "IIIIiiiiii";
 
-        TextBoxPage textBoxPage = new TextBoxPage(TEXT_BOX_URL);
+        TextBoxPage textBoxPage = new TextBoxPage(TEXT_BOX_PAGE_URL);
 
         textBoxPage.setEmail(email);
         textBoxPage.submit();
@@ -67,7 +67,7 @@ public class TextBoxTest extends BaseSelenideTest {
     public void submitFormWithValidEmail() {
         String email = "egor.test@example.com";
 
-        TextBoxPage textBoxPage = new TextBoxPage(TEXT_BOX_URL);
+        TextBoxPage textBoxPage = new TextBoxPage(TEXT_BOX_PAGE_URL);
 
         textBoxPage.setEmail(email);
         textBoxPage.submit();
@@ -81,7 +81,7 @@ public class TextBoxTest extends BaseSelenideTest {
         String firstName = "Egor";
         String secondName = "Igor";
 
-        TextBoxPage textBoxPage = new TextBoxPage(TEXT_BOX_URL);
+        TextBoxPage textBoxPage = new TextBoxPage(TEXT_BOX_PAGE_URL);
 
         textBoxPage.setFullName(firstName);
         textBoxPage.submit();
@@ -97,7 +97,7 @@ public class TextBoxTest extends BaseSelenideTest {
     @Test
     @DisplayName("Результат не отображается при отправке пустой формы")
     public void keepOutputHiddenWhenFormIsEmpty() {
-        TextBoxPage textBoxPage = new TextBoxPage(TEXT_BOX_URL);
+        TextBoxPage textBoxPage = new TextBoxPage(TEXT_BOX_PAGE_URL);
 
         textBoxPage.submit();
 

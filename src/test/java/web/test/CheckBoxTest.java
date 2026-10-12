@@ -11,14 +11,14 @@ import web.page.CheckBoxPage;
 @PageLoadStrategy(LoadStrategy.EAGER)
 public class CheckBoxTest extends BaseSelenideTest {
 
-    private static final String CHECKBOX_URL = "https://demoqa.com/checkbox";
+    private static final String CHECKBOX_PAGE_URL = "https://demoqa.com/checkbox";
 
     @Test
     @DisplayName("Выбор корневого checkbox Home")
     public void selectHomeCheckboxTest() {
         String checkboxHome = "Home";
 
-        CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
+        CheckBoxPage page = new CheckBoxPage(CHECKBOX_PAGE_URL);
 
         page.selectCheckbox(checkboxHome);
 
@@ -31,7 +31,7 @@ public class CheckBoxTest extends BaseSelenideTest {
     public void unselectHomeCheckboxTest() {
         String checkboxHome = "Home";
 
-        CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
+        CheckBoxPage page = new CheckBoxPage(CHECKBOX_PAGE_URL);
 
         page.selectCheckbox(checkboxHome);
         page.selectCheckbox(checkboxHome);
@@ -48,7 +48,7 @@ public class CheckBoxTest extends BaseSelenideTest {
         String checkboxNotes = "Notes";
         String checkboxCommands = "Commands";
 
-        CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
+        CheckBoxPage page = new CheckBoxPage(CHECKBOX_PAGE_URL);
 
         page.expandNode(checkboxHome);
         page.expandNode(checkboxDesktop);
@@ -67,7 +67,7 @@ public class CheckBoxTest extends BaseSelenideTest {
         String checkboxNotes = "Notes";
         String checkboxCommands = "Commands";
 
-        CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
+        CheckBoxPage page = new CheckBoxPage(CHECKBOX_PAGE_URL);
 
         page.expandNode(checkboxHome);
         page.expandNode(checkboxDesktop);
@@ -84,7 +84,7 @@ public class CheckBoxTest extends BaseSelenideTest {
         String checkboxDesktop = "Desktop";
         String checkboxNotes = "Notes";
 
-        CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
+        CheckBoxPage page = new CheckBoxPage(CHECKBOX_PAGE_URL);
 
         page.expandNode(checkboxHome);
         page.expandNode(checkboxDesktop);
@@ -103,7 +103,7 @@ public class CheckBoxTest extends BaseSelenideTest {
         String checkboxReact = "React";
         String checkboxGeneral = "General";
 
-        CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
+        CheckBoxPage page = new CheckBoxPage(CHECKBOX_PAGE_URL);
 
         page.expandAll();
 
@@ -122,7 +122,7 @@ public class CheckBoxTest extends BaseSelenideTest {
         String checkboxNotes = "Notes";
         String checkboxCommands = "Commands";
 
-        CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
+        CheckBoxPage page = new CheckBoxPage(CHECKBOX_PAGE_URL);
 
         page.expandAll();
         page.collapseAll();
@@ -144,7 +144,7 @@ public class CheckBoxTest extends BaseSelenideTest {
         String checkboxNotes = "Notes";
         String checkboxCommands = "Commands";
 
-        CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
+        CheckBoxPage page = new CheckBoxPage(CHECKBOX_PAGE_URL);
 
         page.expandNode(checkboxHome);
         page.expandNode(checkboxDesktop);

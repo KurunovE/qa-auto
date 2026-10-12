@@ -55,8 +55,6 @@ public class CheckBoxPage {
     }
 
     public void expandAll() {
-        // Selenide проксирует элементы: при каждом вызове tree.$(...)
-        // происходит новый поиск в DOM, что идеально для динамических деревьев
         SelenideElement closeSwitcher = tree.$(SWITCHER_CLOSE_SELECTOR);
         while (closeSwitcher.exists()) {
             closeSwitcher.click();
@@ -65,8 +63,6 @@ public class CheckBoxPage {
 
     public void collapseAll() {
         ElementsCollection openSwitchers = tree.$$(SWITCHER_OPEN_SELECTOR);
-        // Сворачиваем снизу вверх (last()), чтобы при исчезновении дочерних узлов
-        // из DOM не ломать индексы оставшихся открытых элементов
         while (!openSwitchers.isEmpty()) {
             openSwitchers.last().click();
         }
