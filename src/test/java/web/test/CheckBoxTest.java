@@ -16,107 +16,141 @@ public class CheckBoxTest extends BaseSelenideTest {
     @Test
     @DisplayName("Выбор корневого checkbox Home")
     public void selectHomeCheckboxTest() {
+        String checkboxHome = "Home";
+
         CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
 
-        page.selectCheckbox("Home");
+        page.selectCheckbox(checkboxHome);
 
-        Assertions.assertTrue(page.isCheckboxSelected("Home"));
+        Assertions.assertTrue(page.isCheckboxSelected(checkboxHome));
         Assertions.assertTrue(page.isResultDisplayed());
     }
 
     @Test
     @DisplayName("Снятие выбора с checkbox Home")
     public void unselectHomeCheckboxTest() {
+        String checkboxHome = "Home";
+
         CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
 
-        page.selectCheckbox("Home");
-        page.selectCheckbox("Home");
+        page.selectCheckbox(checkboxHome);
+        page.selectCheckbox(checkboxHome);
 
-        Assertions.assertFalse(page.isCheckboxSelected("Home"));
+        Assertions.assertFalse(page.isCheckboxSelected(checkboxHome));
         Assertions.assertFalse(page.isResultDisplayed());
     }
 
     @Test
     @DisplayName("Выбор Desktop отмечает вложенные элементы")
     public void selectDesktopCheckboxTest() {
+        String checkboxHome = "Home";
+        String checkboxDesktop = "Desktop";
+        String checkboxNotes = "Notes";
+        String checkboxCommands = "Commands";
+
         CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
 
-        page.expandNode("Home");
-        page.expandNode("Desktop");
-        page.selectCheckbox("Desktop");
+        page.expandNode(checkboxHome);
+        page.expandNode(checkboxDesktop);
+        page.selectCheckbox(checkboxDesktop);
 
-        Assertions.assertTrue(page.isCheckboxSelected("Desktop"));
-        Assertions.assertTrue(page.isCheckboxSelected("Notes"));
-        Assertions.assertTrue(page.isCheckboxSelected("Commands"));
+        Assertions.assertTrue(page.isCheckboxSelected(checkboxDesktop));
+        Assertions.assertTrue(page.isCheckboxSelected(checkboxNotes));
+        Assertions.assertTrue(page.isCheckboxSelected(checkboxCommands));
     }
 
     @Test
     @DisplayName("Выбор Notes не отмечает Commands")
     public void selectSingleCheckboxTest() {
+        String checkboxHome = "Home";
+        String checkboxDesktop = "Desktop";
+        String checkboxNotes = "Notes";
+        String checkboxCommands = "Commands";
+
         CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
 
-        page.expandNode("Home");
-        page.expandNode("Desktop");
-        page.selectCheckbox("Notes");
+        page.expandNode(checkboxHome);
+        page.expandNode(checkboxDesktop);
+        page.selectCheckbox(checkboxNotes);
 
-        Assertions.assertTrue(page.isCheckboxSelected("Notes"));
-        Assertions.assertFalse(page.isCheckboxSelected("Commands"));
+        Assertions.assertTrue(page.isCheckboxSelected(checkboxNotes));
+        Assertions.assertFalse(page.isCheckboxSelected(checkboxCommands));
     }
 
     @Test
     @DisplayName("Частичный выбор дочерних элементов отмечает родительские")
     public void partiallySelectedParentTest() {
+        String checkboxHome = "Home";
+        String checkboxDesktop = "Desktop";
+        String checkboxNotes = "Notes";
+
         CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
 
-        page.expandNode("Home");
-        page.expandNode("Desktop");
-        page.selectCheckbox("Notes");
+        page.expandNode(checkboxHome);
+        page.expandNode(checkboxDesktop);
+        page.selectCheckbox(checkboxNotes);
 
-        Assertions.assertTrue(page.isCheckboxPartiallySelected("Desktop"));
-        Assertions.assertTrue(page.isCheckboxPartiallySelected("Home"));
+        Assertions.assertTrue(page.isCheckboxPartiallySelected(checkboxDesktop));
+        Assertions.assertTrue(page.isCheckboxPartiallySelected(checkboxHome));
     }
 
     @Test
     @DisplayName("Раскрытие всех узлов дерева")
     public void expandAllNodesTest() {
+        String checkboxNotes = "Notes";
+        String checkboxCommands = "Commands";
+        String checkboxDownloads = "Downloads";
+        String checkboxReact = "React";
+        String checkboxGeneral = "General";
+
         CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
 
         page.expandAll();
 
-        Assertions.assertTrue(page.isNodeVisible("Notes"));
-        Assertions.assertTrue(page.isNodeVisible("Commands"));
-        Assertions.assertTrue(page.isNodeVisible("Downloads"));
-        Assertions.assertTrue(page.isNodeVisible("React"));
-        Assertions.assertTrue(page.isNodeVisible("General"));
+        Assertions.assertTrue(page.isNodeVisible(checkboxNotes));
+        Assertions.assertTrue(page.isNodeVisible(checkboxCommands));
+        Assertions.assertTrue(page.isNodeVisible(checkboxDownloads));
+        Assertions.assertTrue(page.isNodeVisible(checkboxReact));
+        Assertions.assertTrue(page.isNodeVisible(checkboxGeneral));
     }
 
     @Test
     @DisplayName("Сворачивание всех узлов дерева")
     public void collapseAllNodesTest() {
+        String checkboxHome = "Home";
+        String checkboxDesktop = "Desktop";
+        String checkboxNotes = "Notes";
+        String checkboxCommands = "Commands";
+
         CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
 
         page.expandAll();
         page.collapseAll();
 
-        Assertions.assertFalse(page.isNodeVisible("Notes"));
-        Assertions.assertFalse(page.isNodeVisible("Commands"));
-        Assertions.assertTrue(page.isNodeVisible("Home"));
+        Assertions.assertFalse(page.isNodeVisible(checkboxNotes));
+        Assertions.assertFalse(page.isNodeVisible(checkboxCommands));
+        Assertions.assertTrue(page.isNodeVisible(checkboxHome));
 
-        page.expandNode("Home");
-        Assertions.assertTrue(page.isNodeVisible("Desktop"));
-        Assertions.assertFalse(page.isNodeVisible("Notes"));
+        page.expandNode(checkboxHome);
+        Assertions.assertTrue(page.isNodeVisible(checkboxDesktop));
+        Assertions.assertFalse(page.isNodeVisible(checkboxNotes));
     }
 
     @Test
     @DisplayName("Отображение выбранных элементов в результате")
     public void selectedItemsOutputTest() {
+        String checkboxHome = "Home";
+        String checkboxDesktop = "Desktop";
+        String checkboxNotes = "Notes";
+        String checkboxCommands = "Commands";
+
         CheckBoxPage page = new CheckBoxPage(CHECKBOX_URL);
 
-        page.expandNode("Home");
-        page.expandNode("Desktop");
-        page.selectCheckbox("Notes");
+        page.expandNode(checkboxHome);
+        page.expandNode(checkboxDesktop);
+        page.selectCheckbox(checkboxNotes);
 
-        Assertions.assertTrue(page.isItemInResult("Notes"));
-        Assertions.assertFalse(page.isItemInResult("Commands"));
+        Assertions.assertTrue(page.isItemInResult(checkboxNotes));
+        Assertions.assertFalse(page.isItemInResult(checkboxCommands));
     }
 }
