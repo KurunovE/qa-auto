@@ -8,8 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import web.page.RadioButtonPage;
 
-import static com.codeborne.selenide.Condition.disabled;
-
 @PageLoadStrategy(LoadStrategy.EAGER)
 public class RadioButtonTest extends BaseSelenideTest {
 
@@ -20,9 +18,9 @@ public class RadioButtonTest extends BaseSelenideTest {
     public void selectYesRadioButtonTest() {
         RadioButtonPage page = new RadioButtonPage(RADIO_BUTTON_PAGE_URL);
 
-        page.getRadioButtonYes().click();
+        page.clickYes();
 
-        Assertions.assertTrue(page.getRadioButtonYes().isSelected());
+        Assertions.assertTrue(page.isYesSelected());
     }
 
     @Test
@@ -30,9 +28,9 @@ public class RadioButtonTest extends BaseSelenideTest {
     public void selectImpressiveRadioButtonTest() {
         RadioButtonPage page = new RadioButtonPage(RADIO_BUTTON_PAGE_URL);
 
-        page.getRadioButtonImpressive().click();
+        page.clickImpressive();
 
-        Assertions.assertTrue(page.getRadioButtonImpressive().isSelected());
+        Assertions.assertTrue(page.isImpressiveSelected());
     }
 
     @Test
@@ -40,8 +38,7 @@ public class RadioButtonTest extends BaseSelenideTest {
     public void selectNoRadioButtonTest() {
         RadioButtonPage page = new RadioButtonPage(RADIO_BUTTON_PAGE_URL);
 
-        Assertions.assertTrue(page.getRadioButtonNo().is(disabled));
-        Assertions.assertFalse(page.getRadioButtonNo().isSelected());
+        Assertions.assertTrue(page.isNoDisabled());
     }
 
     @Test
@@ -49,10 +46,10 @@ public class RadioButtonTest extends BaseSelenideTest {
     public void switchFromYesRadioButtonToImpressiveRadioButtonTest() {
         RadioButtonPage page = new RadioButtonPage(RADIO_BUTTON_PAGE_URL);
 
-        page.getRadioButtonYes().click();
-        page.getRadioButtonImpressive().click();
+        page.clickYes();
+        page.clickImpressive();
 
-        Assertions.assertFalse(page.getRadioButtonYes().isSelected());
-        Assertions.assertTrue(page.getRadioButtonImpressive().isSelected());
+        Assertions.assertFalse(page.isYesSelected());
+        Assertions.assertTrue(page.isImpressiveSelected());
     }
 }

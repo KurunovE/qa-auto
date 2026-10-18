@@ -2,6 +2,7 @@ package web.page;
 
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -13,23 +14,31 @@ import static com.codeborne.selenide.Selenide.open;
  */
 public class RadioButtonPage {
 
-    private static final SelenideElement radioButtonYes = $x("//input[@id='yesRadio']");
-    private static final SelenideElement radioButtonImpressive = $x("//input[@id='impressiveRadio']");
-    private static final SelenideElement radioButtonNo = $x("//input[@id='noRadio']");
+    private final SelenideElement radioButtonYes = $x("//input[@id='yesRadio']");
+    private final SelenideElement radioButtonImpressive = $x("//input[@id='impressiveRadio']");
+    private final SelenideElement radioButtonNo = $x("//input[@id='noRadio']");
 
     public RadioButtonPage(String url) {
         open(url);
     }
 
-    public SelenideElement getRadioButtonYes() {
-        return radioButtonYes;
+    public void clickYes() {
+        radioButtonYes.click();
     }
 
-    public SelenideElement getRadioButtonImpressive() {
-        return radioButtonImpressive;
+    public void clickImpressive() {
+        radioButtonImpressive.click();
     }
 
-    public SelenideElement getRadioButtonNo() {
-        return radioButtonNo;
+    public boolean isYesSelected() {
+        return radioButtonYes.isSelected();
+    }
+
+    public boolean isImpressiveSelected() {
+        return radioButtonImpressive.isSelected();
+    }
+
+    public boolean isNoDisabled() {
+        return radioButtonNo.is(disabled) && !radioButtonNo.isSelected();
     }
 }
