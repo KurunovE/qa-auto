@@ -1,0 +1,93 @@
+package api.test.users;
+
+import api.specification.UsersReqResSpecification;
+import io.restassured.path.json.JsonPath;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.time.Instant;
+import java.util.Map;
+
+import static io.restassured.RestAssured.given;
+
+public class ReqResPostTest {
+
+    private static final String URL = "https://reqres.in";
+    private static final String USERS_ENDPOINT = "/api/users";
+    private static final String REGISTER_ENDPOINT = "/api/register";
+    private static final String LOGIN_ENDPOINT = "/api/login";
+
+    @Test
+    @DisplayName("Проверка создания пользователя")
+    public void checkCreateUserTest() {
+        UsersReqResSpecification.installSpecification(
+                UsersReqResSpecification.requestSpecification(URL),
+                UsersReqResSpecification.responseSpecification(201)
+        );
+
+        Map<String, String> user = Map.of(
+                "name", "morpheus",
+                "job", "leader"
+        );
+
+        JsonPath response = given()
+                .body(user)
+                .when()
+                .post(USERS_ENDPOINT)
+                .then().log().all()
+                .extract()
+                .jsonPath();
+
+        Assertions.assertEquals(user.get("name"), response.getString("name"));
+        Assertions.assertEquals(user.get("job"), response.getString("job"));
+        Assertions.assertNotNull(response.getString("id"));
+        Assertions.assertFalse(response.getString("id").isBlank());
+        Assertions.assertNotNull(response.getString("createdAt"));
+        Assertions.assertDoesNotThrow(() -> Instant.parse(response.getString("createdAt")));
+    }
+
+    @Test
+    @DisplayName("Проверка отказа регистрации без пароля")
+    public void checkRegisterWithoutPasswordTest() {
+        UsersReqResSpecification.installSpecification(
+                UsersReqResSpecification.requestSpecification(URL),
+                UsersReqResSpecification.responseSpecification(400)
+        );
+
+        Map<String, String> user = Map.of("email", "sydney@fife");
+
+        JsonPath response = given()
+                .body(user)
+                .when()
+                .post(REGISTER_ENDPOINT)
+                .then().log().all()
+                .extract()
+                .jsonPath();
+
+        Assertions.assertEquals("Missing password", response.getString("error"));
+        Assertions.assertNull(response.getString("token"));
+    }
+
+    @Test
+    @DisplayName("Проверка отказа входа без пароля")
+    public void checkLoginWithoutPasswordTest() {
+        UsersReqResSpecification.installSpecification(
+                UsersReqResSpecification.requestSpecification(URL),
+                UsersReqResSpecification.responseSpecification(400)
+        );
+
+        Map<String, String> user = Map.of("email", "peter@klaven");
+
+        JsonPath response = given()
+                .body(user)
+                .when()
+                .post(LOGIN_ENDPOINT)
+                .then().log().all()
+                .extract()
+                .jsonPath();
+
+        Assertions.assertEquals("Missing password", response.getString("error"));
+        Assertions.assertNull(response.getString("token"));
+    }
+}
