@@ -15,8 +15,8 @@ public abstract class BaseSelenideTest {
     private static final String BROWSER = "firefox";
     private static final String BROWSER_SIZE = "1440x735";
     private static final boolean HEADLESS = false;
-    private static final long PAGE_LOAD_TIMEOUT = 60_000;
-    private static final long ELEMENT_LOAD_TIMEOUT = 20_000;
+    private static final long PAGE_LOAD_TIMEOUT = 60_000L;
+    private static final long ELEMENT_LOAD_TIMEOUT = 20_000L;
 
     private static final LoadStrategy DEFAULT_STRATEGY = LoadStrategy.NORMAL;
 
