@@ -19,6 +19,8 @@
         <aspectj.version>1.9.22.1</aspectj.version>
         <commons-codec.version>1.17.2</commons-codec.version>
         <lombok.version>1.18.48</lombok.version>
+        <jackson.version>2.22.4</jackson.version>
+        <slf4j.version>2.0.20</slf4j.version>
     </properties>
 
     <dependencyManagement>
@@ -46,6 +48,18 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
