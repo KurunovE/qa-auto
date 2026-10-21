@@ -1,0 +1,13 @@
+demoqa:
+  text-box-url: "https://demoqa.com/text-box"
+  buttons-url: "https://demoqa.com/buttons"
+  checkbox-url: "https://demoqa.com/checkbox"
+  radio-button-url: "https://demoqa.com/radio-button"
+
+reqres:
+  base-url: "https://reqres.in"
+  endpoints:
+    login: "/api/login"
+    register: "/api/register"
+    users: "/api/users"
+    products: "/api/products"
