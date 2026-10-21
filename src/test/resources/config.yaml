@@ -1,3 +1,10 @@
+configuration:
+  browser: "firefox"
+  browser-size: "1440x735"
+  headless: false
+  page-load-timeout: 60_000
+  element-load-timeout: 20_000
+
 demoqa:
   text-box-url: "https://demoqa.com/text-box"
   buttons-url: "https://demoqa.com/buttons"

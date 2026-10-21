@@ -15,14 +15,42 @@ public final class TestConfig {
     }
 
     public static String get(String key) {
-        JsonNode value = VALUES;
-        for (String part : key.split("\\.", -1)) {
-            value = value.path(part);
-        }
+        JsonNode value = findValue(key);
         if (!value.isTextual() || value.textValue().isBlank()) {
             throw new IllegalArgumentException("Missing or non-string configuration value: " + key);
         }
         return value.textValue();
+    }
+
+    public static boolean getBoolean(String key) {
+        JsonNode value = findValue(key);
+        if (!value.isBoolean()) {
+            throw new IllegalArgumentException("Missing or non-boolean configuration value: " + key);
+        }
+        return value.booleanValue();
+    }
+
+    public static long getLong(String key) {
+        JsonNode value = findValue(key);
+        if (value.isIntegralNumber() && value.canConvertToLong()) {
+            return value.longValue();
+        }
+        if (value.isTextual() && value.textValue().matches("[+-]?[0-9]+(?:_[0-9]+)*")) {
+            try {
+                return Long.parseLong(value.textValue().replace("_", ""));
+            } catch (NumberFormatException exception) {
+                throw new IllegalArgumentException("Configuration value is outside long range: " + key, exception);
+            }
+        }
+        throw new IllegalArgumentException("Missing or non-integer configuration value: " + key);
+    }
+
+    private static JsonNode findValue(String key) {
+        JsonNode value = VALUES;
+        for (String part : key.split("\\.", -1)) {
+            value = value.path(part);
+        }
+        return value;
     }
 
     private static JsonNode load() {

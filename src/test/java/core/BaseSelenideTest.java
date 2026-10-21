@@ -3,6 +3,7 @@ package core;
 import annotation.PageLoadStrategy;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import config.TestConfig;
 import enumirate.LoadStrategy;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,11 +13,11 @@ import java.lang.reflect.Method;
 
 public abstract class BaseSelenideTest {
 
-    private static final String BROWSER = "firefox";
-    private static final String BROWSER_SIZE = "1440x735";
-    private static final boolean HEADLESS = false;
-    private static final long PAGE_LOAD_TIMEOUT = 60_000L;
-    private static final long ELEMENT_LOAD_TIMEOUT = 20_000L;
+    private static final String BROWSER = TestConfig.get("configuration.browser");
+    private static final String BROWSER_SIZE = TestConfig.get("configuration.browser-size");
+    private static final boolean HEADLESS = TestConfig.getBoolean("configuration.headless");
+    private static final long PAGE_LOAD_TIMEOUT = TestConfig.getLong("configuration.page-load-timeout");
+    private static final long ELEMENT_LOAD_TIMEOUT = TestConfig.getLong("configuration.element-load-timeout");
 
     private static final LoadStrategy DEFAULT_STRATEGY = LoadStrategy.NORMAL;
 
