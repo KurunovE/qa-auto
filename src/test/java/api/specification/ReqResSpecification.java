@@ -16,6 +16,14 @@ public class ReqResSpecification {
                 .build();
     }
 
+    public static RequestSpecification requestSpecification(String url, String apiKey) {
+        return new RequestSpecBuilder()
+                .setBaseUri(url)
+                .addHeader("x-api-key", apiKey)
+                .setContentType(ContentType.JSON)
+                .build();
+    }
+
     public static ResponseSpecification responseSpecification(int status) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(status)
