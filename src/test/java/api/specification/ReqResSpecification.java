@@ -6,9 +6,8 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-import org.apache.hc.core5.http.HttpStatus;
 
-public class UsersReqResSpecification {
+public class ReqResSpecification {
 
     public static RequestSpecification requestSpecification(String url) {
         return new RequestSpecBuilder()

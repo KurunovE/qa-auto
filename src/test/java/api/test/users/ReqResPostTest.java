@@ -1,6 +1,6 @@
 package api.test.users;
 
-import api.specification.UsersReqResSpecification;
+import api.specification.ReqResSpecification;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -21,9 +21,9 @@ public class ReqResPostTest {
     @Test
     @DisplayName("Проверка создания пользователя")
     public void checkCreateUserTest() {
-        UsersReqResSpecification.installSpecification(
-                UsersReqResSpecification.requestSpecification(URL),
-                UsersReqResSpecification.responseSpecification(201)
+        ReqResSpecification.installSpecification(
+                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.responseSpecification(201)
         );
 
         Map<String, String> user = Map.of(
@@ -50,9 +50,9 @@ public class ReqResPostTest {
     @Test
     @DisplayName("Проверка отказа регистрации без пароля")
     public void checkRegisterWithoutPasswordTest() {
-        UsersReqResSpecification.installSpecification(
-                UsersReqResSpecification.requestSpecification(URL),
-                UsersReqResSpecification.responseSpecification(400)
+        ReqResSpecification.installSpecification(
+                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.responseSpecification(400)
         );
 
         Map<String, String> user = Map.of("email", "sydney@fife");
@@ -72,9 +72,9 @@ public class ReqResPostTest {
     @Test
     @DisplayName("Проверка отказа входа без пароля")
     public void checkLoginWithoutPasswordTest() {
-        UsersReqResSpecification.installSpecification(
-                UsersReqResSpecification.requestSpecification(URL),
-                UsersReqResSpecification.responseSpecification(400)
+        ReqResSpecification.installSpecification(
+                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.responseSpecification(400)
         );
 
         Map<String, String> user = Map.of("email", "peter@klaven");

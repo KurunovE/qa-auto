@@ -1,6 +1,6 @@
 package api.test.users;
 
-import api.specification.UsersReqResSpecification;
+import api.specification.ReqResSpecification;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -19,9 +19,9 @@ public class ReqResPutTest {
     @Test
     @DisplayName("Проверка обновления пользователя")
     public void checkUpdateUserTest() {
-        UsersReqResSpecification.installSpecification(
-                UsersReqResSpecification.requestSpecification(URL),
-                UsersReqResSpecification.responseSpecification(200)
+        ReqResSpecification.installSpecification(
+                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.responseSpecification(200)
         );
 
         Map<String, String> user = Map.of(

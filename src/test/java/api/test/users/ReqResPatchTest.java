@@ -1,6 +1,6 @@
 package api.test.users;
 
-import api.specification.UsersReqResSpecification;
+import api.specification.ReqResSpecification;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -19,9 +19,9 @@ public class ReqResPatchTest {
     @Test
     @DisplayName("Проверка частичного обновления имени пользователя")
     public void checkUpdateUserNameTest() {
-        UsersReqResSpecification.installSpecification(
-                UsersReqResSpecification.requestSpecification(URL),
-                UsersReqResSpecification.responseSpecification(200)
+        ReqResSpecification.installSpecification(
+                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.responseSpecification(200)
         );
 
         Map<String, String> user = Map.of("name", "neo");
@@ -43,9 +43,9 @@ public class ReqResPatchTest {
     @Test
     @DisplayName("Проверка частичного обновления должности пользователя")
     public void checkUpdateUserJobTest() {
-        UsersReqResSpecification.installSpecification(
-                UsersReqResSpecification.requestSpecification(URL),
-                UsersReqResSpecification.responseSpecification(200)
+        ReqResSpecification.installSpecification(
+                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.responseSpecification(200)
         );
 
         Map<String, String> user = Map.of("job", "the one");

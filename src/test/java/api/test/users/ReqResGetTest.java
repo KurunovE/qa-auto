@@ -2,7 +2,7 @@ package api.test.users;
 
 import api.model.UserProfile;
 import api.model.UsersResponse;
-import api.specification.UsersReqResSpecification;
+import api.specification.ReqResSpecification;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -19,9 +19,9 @@ public class ReqResGetTest {
     @Test
     @DisplayName("Проверка аватар содержит id и email оканчивается на '@reqres.in'")
     public void checkAvatarContainsIdAndEmailEndsWithReqResTest() {
-        UsersReqResSpecification.installSpecification(
-                UsersReqResSpecification.requestSpecification(URL),
-                UsersReqResSpecification.responseSpecification(200)
+        ReqResSpecification.installSpecification(
+                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.responseSpecification(200)
         );
 
         UsersResponse usersResponse = given()
@@ -45,9 +45,9 @@ public class ReqResGetTest {
     @Test
     @DisplayName("Проверка получения пользователя по id")
     public void checkUserByIdTest() {
-        UsersReqResSpecification.installSpecification(
-                UsersReqResSpecification.requestSpecification(URL),
-                UsersReqResSpecification.responseSpecification(200)
+        ReqResSpecification.installSpecification(
+                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.responseSpecification(200)
         );
 
         Long userId = 2L;
@@ -76,9 +76,9 @@ public class ReqResGetTest {
     @Test
     @DisplayName("Проверка получения несуществующего пользователя")
     public void checkUserNotFoundTest() {
-        UsersReqResSpecification.installSpecification(
-                UsersReqResSpecification.requestSpecification(URL),
-                UsersReqResSpecification.responseSpecification(404)
+        ReqResSpecification.installSpecification(
+                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.responseSpecification(404)
         );
 
         JsonPath response = given()

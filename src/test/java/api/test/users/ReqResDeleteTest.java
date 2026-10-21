@@ -1,6 +1,6 @@
 package api.test.users;
 
-import api.specification.UsersReqResSpecification;
+import api.specification.ReqResSpecification;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,9 +15,9 @@ public class ReqResDeleteTest {
     @Test
     @DisplayName("Проверка удаления пользователя")
     public void checkDeleteUserTest() {
-        UsersReqResSpecification.installSpecification(
-                UsersReqResSpecification.requestSpecification(URL),
-                UsersReqResSpecification.responseSpecification(204)
+        ReqResSpecification.installSpecification(
+                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.responseSpecification(204)
         );
 
         String response = given()
@@ -34,9 +34,9 @@ public class ReqResDeleteTest {
     @Test
     @DisplayName("Проверка повторного удаления пользователя")
     public void checkDeleteUserTwiceTest() {
-        UsersReqResSpecification.installSpecification(
-                UsersReqResSpecification.requestSpecification(URL),
-                UsersReqResSpecification.responseSpecification(204)
+        ReqResSpecification.installSpecification(
+                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.responseSpecification(204)
         );
 
         for (int attempt = 0; attempt < 2; attempt++) {
