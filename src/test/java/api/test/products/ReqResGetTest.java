@@ -18,12 +18,13 @@ import static io.restassured.RestAssured.given;
 public class ReqResGetTest extends BaseReqResTest {
 
     private static final String PRODUCTS_ENDPOINT = TestConfig.get("reqres.endpoints.products");
+    private static final String API_KEY = TestConfig.get("reqres.api-key");
 
     @Test
     @DisplayName("Проверка получения первой страницы продуктов и проверка всех полей")
     public void checkProductsFirstPageTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(REQ_RES_URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL, API_KEY),
                 ReqResSpecification.responseSpecification(200)
         );
 
@@ -53,7 +54,7 @@ public class ReqResGetTest extends BaseReqResTest {
     @DisplayName("Проверка получения второй страницы продуктов")
     public void checkProductsSecondPageTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(REQ_RES_URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL, API_KEY),
                 ReqResSpecification.responseSpecification(200)
         );
 
@@ -91,7 +92,7 @@ public class ReqResGetTest extends BaseReqResTest {
     @DisplayName("Проверка получения продукта по id")
     public void checkProductByIdTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(REQ_RES_URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL, API_KEY),
                 ReqResSpecification.responseSpecification(200)
         );
 
@@ -114,7 +115,7 @@ public class ReqResGetTest extends BaseReqResTest {
     @DisplayName("Проверка получения несуществующего продукта")
     public void checkProductNotFoundTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(REQ_RES_URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL, API_KEY),
                 ReqResSpecification.responseSpecification(404)
         );
 
