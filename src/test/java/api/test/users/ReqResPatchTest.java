@@ -1,26 +1,28 @@
 package api.test.users;
 
+
 import api.specification.ReqResSpecification;
+import core.BaseReqResTest;
+import config.TestConfig;
 import io.restassured.path.json.JsonPath;
+import java.time.Instant;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.Instant;
-import java.util.Map;
-
 import static io.restassured.RestAssured.given;
 
-public class ReqResPatchTest {
+public class ReqResPatchTest extends BaseReqResTest {
 
-    private static final String URL = "https://reqres.in";
-    private static final String USERS_ENDPOINT = "/api/users";
+    private static final String USERS_ENDPOINT = TestConfig.get("reqres.endpoints.userS");
+
 
     @Test
     @DisplayName("Проверка частичного обновления имени пользователя")
     public void checkUpdateUserNameTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL),
                 ReqResSpecification.responseSpecification(200)
         );
 
@@ -44,7 +46,7 @@ public class ReqResPatchTest {
     @DisplayName("Проверка частичного обновления должности пользователя")
     public void checkUpdateUserJobTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL),
                 ReqResSpecification.responseSpecification(200)
         );
 

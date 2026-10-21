@@ -2,6 +2,7 @@ package web.test;
 
 import annotation.PageLoadStrategy;
 import core.BaseSelenideTest;
+import config.TestConfig;
 import enumirate.LoadStrategy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +12,7 @@ import web.page.RadioButtonPage;
 @PageLoadStrategy(LoadStrategy.EAGER)
 public class RadioButtonTest extends BaseSelenideTest {
 
-    private static final String RADIO_BUTTON_PAGE_URL = "https://demoqa.com/radio-button";
+    private static final String RADIO_BUTTON_PAGE_URL = TestConfig.get("demoqa.radio-button-url");
 
     @Test
     @DisplayName("Выбор Yes кнопки и проверка состояния checked")

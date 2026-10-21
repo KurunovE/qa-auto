@@ -3,6 +3,8 @@ package api.test.users;
 import api.model.UserProfile;
 import api.model.UsersResponse;
 import api.specification.ReqResSpecification;
+import core.BaseReqResTest;
+import config.TestConfig;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -10,17 +12,16 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class ReqResGetTest {
+public class ReqResGetTest extends BaseReqResTest {
 
-    private static final String URL = "https://reqres.in";
-    private static final String USERS_ENDPOINT = "/api/users";
+    private static final String USERS_ENDPOINT = TestConfig.get("reqres.endpoints.users");
     private static final String EMAIL_POSTFIX = "@reqres.in";
 
     @Test
     @DisplayName("Проверка аватар содержит id и email оканчивается на '@reqres.in'")
     public void checkAvatarContainsIdAndEmailEndsWithReqResTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL),
                 ReqResSpecification.responseSpecification(200)
         );
 
@@ -46,7 +47,7 @@ public class ReqResGetTest {
     @DisplayName("Проверка получения пользователя по id")
     public void checkUserByIdTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL),
                 ReqResSpecification.responseSpecification(200)
         );
 
@@ -77,7 +78,7 @@ public class ReqResGetTest {
     @DisplayName("Проверка получения несуществующего пользователя")
     public void checkUserNotFoundTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL),
                 ReqResSpecification.responseSpecification(404)
         );
 

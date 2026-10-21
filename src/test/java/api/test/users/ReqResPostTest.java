@@ -1,28 +1,29 @@
 package api.test.users;
 
+
 import api.specification.ReqResSpecification;
+import core.BaseReqResTest;
+import config.TestConfig;
 import io.restassured.path.json.JsonPath;
+import java.time.Instant;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.Instant;
-import java.util.Map;
-
 import static io.restassured.RestAssured.given;
 
-public class ReqResPostTest {
+public class ReqResPostTest extends BaseReqResTest {
 
-    private static final String URL = "https://reqres.in";
-    private static final String USERS_ENDPOINT = "/api/users";
-    private static final String REGISTER_ENDPOINT = "/api/register";
-    private static final String LOGIN_ENDPOINT = "/api/login";
+    private static final String USERS_ENDPOINT = TestConfig.get("reqres.endpoints.users");
+    private static final String REGISTER_ENDPOINT = TestConfig.get("reqres.endpoints.register");
+    private static final String LOGIN_ENDPOINT = TestConfig.get("reqres.endpoints.login");
 
     @Test
     @DisplayName("Проверка создания пользователя")
     public void checkCreateUserTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL),
                 ReqResSpecification.responseSpecification(201)
         );
 
@@ -51,7 +52,7 @@ public class ReqResPostTest {
     @DisplayName("Проверка отказа регистрации без пароля")
     public void checkRegisterWithoutPasswordTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL),
                 ReqResSpecification.responseSpecification(400)
         );
 
@@ -73,7 +74,7 @@ public class ReqResPostTest {
     @DisplayName("Проверка отказа входа без пароля")
     public void checkLoginWithoutPasswordTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL),
                 ReqResSpecification.responseSpecification(400)
         );
 

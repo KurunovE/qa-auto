@@ -2,6 +2,7 @@ package web.test;
 
 import annotation.PageLoadStrategy;
 import core.BaseSelenideTest;
+import config.TestConfig;
 import enumirate.LoadStrategy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +12,7 @@ import web.page.CheckBoxPage;
 @PageLoadStrategy(LoadStrategy.EAGER)
 public class CheckBoxTest extends BaseSelenideTest {
 
-    private static final String CHECKBOX_PAGE_URL = "https://demoqa.com/checkbox";
+    private static final String CHECKBOX_PAGE_URL = TestConfig.get("demoqa.checkbox-url");
 
     @Test
     @DisplayName("Выбор корневого checkbox Home")

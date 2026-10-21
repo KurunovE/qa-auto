@@ -1,7 +1,9 @@
 package api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 
+@Builder
 public record Product(
         Integer id,
 

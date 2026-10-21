@@ -2,6 +2,7 @@ package web.test;
 
 import annotation.PageLoadStrategy;
 import core.BaseSelenideTest;
+import config.TestConfig;
 import enumirate.LoadStrategy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +12,7 @@ import web.page.TextBoxPage;
 @PageLoadStrategy(LoadStrategy.EAGER)
 public class TextBoxTest extends BaseSelenideTest {
 
-    private static final String TEXT_BOX_PAGE_URL = "https://demoqa.com/text-box";
+    private static final String TEXT_BOX_PAGE_URL = TestConfig.get("demoqa.text-box-url");
 
     @Test
     @DisplayName("Отправка формы с валидными данными")

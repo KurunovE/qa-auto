@@ -1,22 +1,23 @@
 package api.test.users;
 
 import api.specification.ReqResSpecification;
+import core.BaseReqResTest;
+import config.TestConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class ReqResDeleteTest {
+public class ReqResDeleteTest extends BaseReqResTest {
 
-    private static final String URL = "https://reqres.in";
-    private static final String USERS_ENDPOINT = "/api/users";
+    private static final String USERS_ENDPOINT = TestConfig.get("reqres.endpoints.users");
 
     @Test
     @DisplayName("Проверка удаления пользователя")
     public void checkDeleteUserTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL),
                 ReqResSpecification.responseSpecification(204)
         );
 
@@ -35,7 +36,7 @@ public class ReqResDeleteTest {
     @DisplayName("Проверка повторного удаления пользователя")
     public void checkDeleteUserTwiceTest() {
         ReqResSpecification.installSpecification(
-                ReqResSpecification.requestSpecification(URL),
+                ReqResSpecification.requestSpecification(REQ_RES_URL),
                 ReqResSpecification.responseSpecification(204)
         );
 

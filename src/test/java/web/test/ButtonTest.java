@@ -2,6 +2,7 @@ package web.test;
 
 import annotation.PageLoadStrategy;
 import core.BaseSelenideTest;
+import config.TestConfig;
 import enumirate.LoadStrategy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ import static web.page.ButtonPage.*;
 @PageLoadStrategy(LoadStrategy.EAGER)
 public class ButtonTest extends BaseSelenideTest {
 
-    private static final String BUTTON_PAGE_URL = "https://demoqa.com/buttons";
+    private static final String BUTTON_PAGE_URL = TestConfig.get("demoqa.buttons-url");
 
     @Test
     public void checkTitle() {
