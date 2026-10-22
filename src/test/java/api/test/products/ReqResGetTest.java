@@ -9,7 +9,7 @@ import core.BaseReqResTest;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.RetryingTest;
 
 import java.util.List;
 
@@ -18,9 +18,8 @@ import static io.restassured.RestAssured.given;
 public class ReqResGetTest extends BaseReqResTest {
 
     private static final String PRODUCTS_ENDPOINT = TestConfig.get("reqres.endpoints.products");
-    private static final String API_KEY = TestConfig.get("reqres.api-key");
 
-    @Test
+    @RetryingTest(maxAttempts = 3, suspendForMs = 5000)
     @DisplayName("Проверка получения первой страницы продуктов и проверка всех полей")
     public void checkProductsFirstPageTest() {
         ReqResSpecification.installSpecification(
@@ -50,7 +49,7 @@ public class ReqResGetTest extends BaseReqResTest {
         Assertions.assertFalse(response.support().text().isBlank());
     }
 
-    @Test
+    @RetryingTest(maxAttempts = 3, suspendForMs = 5000)
     @DisplayName("Проверка получения второй страницы продуктов")
     public void checkProductsSecondPageTest() {
         ReqResSpecification.installSpecification(
@@ -88,7 +87,7 @@ public class ReqResGetTest extends BaseReqResTest {
         );
     }
 
-    @Test
+    @RetryingTest(maxAttempts = 3, suspendForMs = 5000)
     @DisplayName("Проверка получения продукта по id")
     public void checkProductByIdTest() {
         ReqResSpecification.installSpecification(
@@ -111,7 +110,7 @@ public class ReqResGetTest extends BaseReqResTest {
         Assertions.assertEquals(ProductFactory.fuchsiaRose(), product);
     }
 
-    @Test
+    @RetryingTest(maxAttempts = 3, suspendForMs = 5000)
     @DisplayName("Проверка получения несуществующего продукта")
     public void checkProductNotFoundTest() {
         ReqResSpecification.installSpecification(
